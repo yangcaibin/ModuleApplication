@@ -1,0 +1,6 @@
+include ':module-exam'
+include ':library-um'
+include ':module-course'
+include ':library-base'
+include ':app'
+rootProject.name = "ModuleApplication"

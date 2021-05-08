@@ -1,0 +1,50 @@
+ext {
+    android = [
+            compileSdkVersion: 30,
+            buildToolsVersion: "30.0.3",
+            minSdkVersion    : 21,
+            targetSdkVersion : 30,
+            versionCode      : 1,
+            versionName      : "1.0.1",
+    ]
+
+    libsVersion = [
+            butterknife_version = "10.2.3",
+            glide_version = "4.11.0",
+            smart_refresh_version = "1.1.2",
+            retrofit_version = "2.9.0",
+            okhttp3_version = "4.9.1",
+            autodispose_version = "0.7.0",
+            lifecycle_version = "2.2.0",
+    ]
+
+    dependencies = [
+            appcompat                       : "androidx.appcompat:appcompat:1.2.0",
+            arouterApi                      : "com.alibaba:arouter-api:1.5.1",
+            arouterCompiler                 : "com.alibaba:arouter-compiler:1.5.1",
+            constraintlayout                : "androidx.constraintlayout:constraintlayout:2.0.4",
+            multidex                        : "androidx.multidex:multidex:2.0.1",  //分包
+            butterknife                     : "com.jakewharton:butterknife:$rootProject.butterknife_version",
+            butterknifeCompiler             : "com.jakewharton:butterknife-compiler:$rootProject.butterknife_version",
+            glide                           : "com.github.bumptech.glide:glide:$rootProject.glide_version",
+            glideCompiler                   : "com.github.bumptech.glide:compiler:$rootProject.glide_version",
+            easypermissions                 : "pub.devrel:easypermissions:3.0.0",
+            smartRefreshLayout              : "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smart_refresh_version",
+            smartRefreshHeader              : "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smart_refresh_version",
+            /*rxJava + retrofit -----start*/
+            okhttp3                         : "com.squareup.okhttp3:okhttp:$rootProject.okhttp3_version",
+            okhttp3LoggingInterceptor       : "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3_version",
+            rxJava2                         : "io.reactivex.rxjava2:rxjava:2.2.11",
+            rxAndroid                       : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            retrofit                        : "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version",
+            retrofitConvertGson             : "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version",
+            retrofitConvertScalars          : "com.squareup.retrofit2:converter-scalars:$rootProject.retrofit_version",
+            retrofitAdapterRxJava2          : "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit_version",
+            /*rxJava + retrofit -----end*/
+            autodispose                     : "com.uber.autodispose:autodispose:$rootProject.autodispose_version",
+            autodisposeAndroid              : "com.uber.autodispose:autodispose-android:$rootProject.autodispose_version",
+            autodisposeAndroidArchcomponents: "com.uber.autodispose:autodispose-android-archcomponents:$rootProject.autodispose_version",
+            baseRecyclerViewAdapterHelper   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
+
+    ]
+}

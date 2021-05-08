@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.yanda.moduleapplication"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        multiDexEnabled true   //分包
+        manifestPlaceholders= [qqappid: "1105848802"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //页面路由
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    //lambda表达式用
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation project(path: ':library-base')
+    if (!isRunModule.toBoolean()) {
+        implementation project(path: ':module-course')
+    }
+    if (!isRunModule.toBoolean()) {
+        implementation project(path: ':module-exam')
+    }
+    annotationProcessor rootProject.ext.dependencies.butterknifeCompiler  //注解用到
+    annotationProcessor rootProject.ext.dependencies.glideCompiler  //glide用到
+    annotationProcessor rootProject.ext.dependencies.arouterCompiler  //页面路由
+}

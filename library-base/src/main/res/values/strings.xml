@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BaseModule</string>
+    <string name="user_agreement">用户协议及隐私政策</string>
+    <string name="agreement_privacy">感谢您对研大医题库的关注！我们非常重视您的个人信息和隐私保护。
+        为给您提供更好的学习体验，在应用程序的使用过程中，我们可能会获取部分必要信息。
+        请您认真阅读《用户协议》及《隐私政策》的全部内容，点击‘同意’即可开始使用我们的产品和服务，开启快乐学习之旅吧！</string>
+    <string name="permission">使用APP需要开通必要的权限</string>
+    <string name="permission_warn">权限提醒</string>
+    <string name="open_storage_permission">请打开存储权限</string>
+    <string name="open_camera_permission">请打开相机权限</string>
+    <string name="sqlPermission">更新数据需要开通存储的权限</string>
+    <string name="go_open">去打开</string>
+</resources>
