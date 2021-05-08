@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+group='com.caibin.um'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
