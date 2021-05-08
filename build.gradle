@@ -14,6 +14,7 @@ buildscript {
         classpath 'me.tatarka:gradle-retrolambda:3.7.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
         classpath 'com.huawei.agconnect:agcp:1.4.2.300'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -23,6 +24,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
         maven { url 'https://developer.huawei.com/repo/'}
 //        maven { url "https://dl.bintray.com/thelasterstar/maven/" }  //新浪
         maven { url 'https://dl.bintray.com/umsdk/release' }

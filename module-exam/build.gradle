@@ -2,7 +2,8 @@ if (isRunModule.toBoolean()) {
     apply plugin: 'com.android.application'
 }else {
     apply plugin: 'com.android.library'
-    group='com.caibin.exam'
+    apply plugin: 'com.github.dcendents.android-maven'
+    group='com.github.yangcaibin'
 }
 
 android {
