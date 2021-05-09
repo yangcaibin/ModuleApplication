@@ -22,7 +22,6 @@ import com.yanda.module_base.utils.Constant;
 import com.yanda.moduleapplication.BuildConfig;
 
 import org.android.agoo.huawei.HuaWeiRegister;
-import org.android.agoo.mezu.MeizuRegister;
 import org.android.agoo.oppo.OppoRegister;
 import org.android.agoo.vivo.VivoRegister;
 import org.android.agoo.xiaomi.MiPushRegistar;
@@ -168,7 +167,7 @@ public class MyApplication extends BaseApplication {
             //华为推送
             HuaWeiRegister.register(this);
             //魅族推送
-            MeizuRegister.register(this, Constant.FLYMEID, Constant.FLYMESECRET);
+//            MeizuRegister.register(this, Constant.FLYMEID, Constant.FLYMESECRET);
             //OPPO通道，参数1为app key，参数2为app secret
             OppoRegister.register(this, Constant.OPPOAPPKEY, Constant.OPPOAPPSECRET);
             //vivo 通道
