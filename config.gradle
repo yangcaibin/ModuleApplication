@@ -10,7 +10,7 @@ ext {
 
     libsVersion = [
             butterknife_version = "10.2.3",
-            glide_version = "4.11.0",
+            glide_version = "4.12.0",
             smart_refresh_version = "1.1.2",
             retrofit_version = "2.9.0",
             okhttp3_version = "4.9.1",
@@ -20,6 +20,8 @@ ext {
 
     dependencies = [
             appcompat                       : "androidx.appcompat:appcompat:1.2.0",
+            material                        : "com.google.android.material:material:1.2.1",
+            swiperefreshlayout              : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
             arouterApi                      : "com.alibaba:arouter-api:1.5.1",
             arouterCompiler                 : "com.alibaba:arouter-compiler:1.5.1",
             constraintlayout                : "androidx.constraintlayout:constraintlayout:2.0.4",

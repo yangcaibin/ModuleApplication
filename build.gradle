@@ -2,19 +2,24 @@
 apply from: "config.gradle"
 
 buildscript {
+    ext.kotlin_version = "1.4.21"
+    ext.objectboxVersion = '2.9.1'
+//    ext.realm_version = '10.5.0'
     repositories {
         google()
         jcenter()
-        maven { url 'https://developer.huawei.com/repo/'}
+        maven { url 'https://developer.huawei.com/repo/' }
         maven { url 'https://repo1.maven.org/maven2/' }
-//        maven { url "https://dl.bintray.com/thelasterstar/maven/" }  //新浪
-//        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }  //新浪
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'me.tatarka:gradle-retrolambda:3.7.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
         classpath 'com.huawei.agconnect:agcp:1.4.2.300'
+        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
+//        classpath "io.realm:realm-gradle-plugin:$realm_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -24,11 +29,26 @@ allprojects {
     repositories {
         google()
         jcenter()
+//        mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven { url 'https://developer.huawei.com/repo/'}
+        maven { url 'https://developer.huawei.com/repo/' }
         maven { url 'https://repo1.maven.org/maven2/' }
-//        maven { url "https://dl.bintray.com/thelasterstar/maven/" }  //新浪
-//        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }  //新浪
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven {
+            credentials {
+                username '5fd969e7ece168490c5bc858'
+                password 'cEBIB)a_i1Pg'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2058071-release-wCdZS7/'
+        }
+        maven {
+            credentials {
+                username '5fd969e7ece168490c5bc858'
+                password 'cEBIB)a_i1Pg'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2058071-snapshot-07s1s8/'
+        }
     }
 }
 

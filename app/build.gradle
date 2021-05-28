@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'io.objectbox'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -10,7 +13,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         multiDexEnabled true   //分包
-        manifestPlaceholders= [qqappid: "1105848802"]
+        manifestPlaceholders = [qqappid: "1105848802"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         //页面路由
         javaCompileOptions {
@@ -20,10 +23,29 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file("module.jks")
+            storePassword "111111"
+            keyAlias "module"
+            keyPassword "111111"
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true  // 代码混淆，代码缩减。
+            zipAlignEnabled true
+            shrinkResources true  // 资源缩减
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled true  // 代码混淆，代码缩减。
+            zipAlignEnabled true
+            shrinkResources true  // 资源缩减
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -32,6 +54,10 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
+//    aaptOptions {
+//        noCompress "mdb"  //表示不让aapt压缩的文件后缀
+//    }
 
     //lambda表达式用
     compileOptions {
@@ -42,17 +68,22 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation project(path: ':library-base')
+//    implementation 'com.yanda.module:base:v1.0.1-SNAPSHOT'
     if (!isRunModule.toBoolean()) {
         implementation project(path: ':module-course')
     }
     if (!isRunModule.toBoolean()) {
         implementation project(path: ':module-exam')
     }
+
+    implementation project(path: ':library-db')
     annotationProcessor rootProject.ext.dependencies.butterknifeCompiler  //注解用到
     annotationProcessor rootProject.ext.dependencies.glideCompiler  //glide用到
     annotationProcessor rootProject.ext.dependencies.arouterCompiler  //页面路由

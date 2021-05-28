@@ -22,9 +22,10 @@ import java.util.Map;
 public class BeginQuestionActivity extends BaseQuestionActivity<BeginQuestionPresenter> implements
         BeginQuestionContract.View {
     Button button;
+
     @Override
-    public BeginQuestionPresenter getPresenter() {
-        return new BeginQuestionPresenter(this);
+    public void initPresenter() {
+        presenter = new BeginQuestionPresenter(this);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class BeginQuestionActivity extends BaseQuestionActivity<BeginQuestionPre
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        if(v.getId() == R.id.button){
+        if (v.getId() == R.id.button) {
             RouterUtil.launchLogin();
         }
     }

@@ -1,0 +1,51 @@
+apply plugin: 'maven'
+apply from: 'config.gradle'
+
+task androidJavadocs(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            def isReleases = configs.isReleases
+            def repositoryUrl = isReleases ? "https://packages.aliyun.com/maven/repository/2058071-release-wCdZS7/" :
+                    "https://packages.aliyun.com/maven/repository/2058071-snapshot-07s1s8/"
+            def version = isReleases ? configs.versionReleases : configs.versionSnapshot
+
+            repository(url: repositoryUrl) {
+                authentication(userName: "5fd969e7ece168490c5bc858", password: "cEBIB)a_i1Pg")
+            }
+
+            pom.groupId = 'com.yanda.module'
+            pom.artifactId = 'um'
+            pom.version = version
+
+            pom.project {
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+            }
+        }
+    }
+}
+

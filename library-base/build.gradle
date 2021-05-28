@@ -1,10 +1,18 @@
-apply plugin: 'com.android.library'
+if (isRunModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
 apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
+        if (isRunModule.toBoolean()) {
+            applicationId "com.yanda.module_base"
+            manifestPlaceholders= [qqappid: "1105848802"]
+        }
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
@@ -24,6 +32,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    sourceSets {
+        main {
+            // 1.单独调试与集成调试时使用不同的 AndroidManifest.xml 文件
+            // 我们还可以根据不同工程配置不同的 Java 源代码、不同的 resource 资源文件等的
+            if (isRunModule.toBoolean()) {
+                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -32,7 +52,14 @@ dependencies {
     api rootProject.ext.dependencies.constraintlayout
 
     //引入友盟库
-    api project(path: ':library-um')
+//    api project(path: ':library-um')
+    api 'com.yanda.module:um:v1.0.1-SNAPSHOT'
+
+    //谷歌官方库
+    api rootProject.ext.dependencies.material
+
+    //官方下拉刷新库
+    api rootProject.ext.dependencies.swiperefreshlayout
 
     //分包工具
     api rootProject.ext.dependencies.multidex
@@ -109,3 +136,4 @@ dependencies {
 //    implementation 'com.umeng.umsdk:vivo-push:2.3.5'
 //    implementation 'com.umeng.umsdk:vivo-umengaccs:1.1.0'
 }
+//apply from: 'push.gradle'

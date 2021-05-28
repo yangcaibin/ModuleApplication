@@ -16,6 +16,7 @@ import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.UmengNotificationClickHandler;
 import com.umeng.message.entity.UMessage;
 import com.umeng.socialize.PlatformConfig;
+import com.yanda.library_db.ObjectBox;
 import com.yanda.module_base.base.BaseApplication;
 import com.yanda.module_base.config.ModuleLifecycleConfig;
 import com.yanda.module_base.utils.Constant;
@@ -43,6 +44,11 @@ public class MyApplication extends BaseApplication {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
         }
+        //初始化ObjectBox
+        ObjectBox.init(this);
+        //初始化Realm
+//        Realm.init(this);
+//        RealmHelper.init();
         //初始化友盟
         initUmeng();
     }

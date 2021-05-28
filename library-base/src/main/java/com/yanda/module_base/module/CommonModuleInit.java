@@ -3,6 +3,7 @@ package com.yanda.module_base.module;
 import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.yanda.module_base.BuildConfig;
 import com.yanda.module_base.base.BaseApplication;
 
 /**
@@ -16,8 +17,10 @@ public class CommonModuleInit implements IModuleInit {
 //        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> new ClassicsHeader(application));
 //        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> new ClassicsFooter(application));
 //        MMKV.initialize(application);
-        ARouter.openLog();
-        ARouter.openDebug();
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog();
+            ARouter.openDebug();
+        }
         ARouter.init(application);
 //        LoadSir.beginBuilder()
 //                .addCallback(new ErrorCallback())

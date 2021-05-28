@@ -54,6 +54,12 @@
     <!-- 接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.netease.nim.demo 替换为自己的包名 -->
     <uses-permission android:name="com.yanda.ydapp.permission.RECEIVE_MSG" />
 
+    <!-- android11及以上 targetSdkVersion=30 如果不加检测不出是否安装了第三方应用 -->
+    <queries>
+        <package android:name="com.tencent.mm" />   <!-- 指定微信包名 -->
+        <package android:name="com.tencent.mobileqq" />  <!-- 指定qq包名 -->
+    </queries>
+
     <application
         android:name=".application.MyApplication"
         android:allowBackup="false"
@@ -119,7 +125,7 @@
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 以下为推送基本配置信息，需要自行添加至您的AndroidManifest文件中 start-->
         <service
@@ -325,15 +331,18 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".KotlinActivity" />
         <!-- 版本更新适配7.0以上用到 微信 QQ 用到-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"
+                tools:replace="android:resource" />
         </provider>
     </application>
 

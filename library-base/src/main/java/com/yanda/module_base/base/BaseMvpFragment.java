@@ -19,16 +19,14 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragm
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        presenter = getPresenter();
+        initPresenter();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     /**
      * 在子类中初始化对应的presenter
-     *
-     * @return 相应的presenter
      */
-    public abstract T getPresenter();
+    public abstract void initPresenter();
 
     @Override
     public void onDestroyView() {

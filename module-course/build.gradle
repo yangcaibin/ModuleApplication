@@ -57,8 +57,10 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation project(path: ':library-base')
+//    implementation 'com.yanda.module:base:v1.0.1-SNAPSHOT'
 
     annotationProcessor rootProject.ext.dependencies.butterknifeCompiler  //注解用到
     annotationProcessor rootProject.ext.dependencies.glideCompiler  //glide用到
     annotationProcessor rootProject.ext.dependencies.arouterCompiler  //页面路由
 }
+//apply from: 'push.gradle'

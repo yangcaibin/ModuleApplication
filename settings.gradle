@@ -1,3 +1,4 @@
+include ':library-db'
 include ':module-exam'
 include ':library-um'
 include ':module-course'

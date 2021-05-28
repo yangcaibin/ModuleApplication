@@ -1,0 +1,9 @@
+ext {
+    configs = [
+            versionCode: 1,
+            versionName: "1.0.1",
+            isReleases: false, //是否发布正式版
+            versionReleases : "v1.0.1",
+            versionSnapshot : "v1.0.1-SNAPSHOT"
+    ]
+}

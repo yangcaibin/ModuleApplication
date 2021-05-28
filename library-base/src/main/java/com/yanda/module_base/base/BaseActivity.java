@@ -13,10 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -35,8 +37,6 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 /**
  * 作者：caibin
@@ -44,11 +44,10 @@ import io.reactivex.disposables.Disposable;
  * 类说明：所有activity的基类
  */
 public abstract class BaseActivity extends AppCompatActivity implements
-        View.OnClickListener, ViewPager.OnPageChangeListener,
-        OnItemClickListener, OnRefreshListener {
+        View.OnClickListener, OnItemClickListener, ViewPager.OnPageChangeListener,
+        SwipeRefreshLayout.OnRefreshListener, OnRefreshListener, OnLoadMoreListener {
     private SmartRefreshLayout smartRefreshLayout;
     private Unbinder bind;
-//    private CompositeDisposable mCompositeDisposable;
     public String userId, subjectId, appType;  //用户Id,app类型
     private LoadingProgressDialog progressDialog;
 
@@ -249,14 +248,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
         this.finish();
     }
 
-//    //设置订阅者
-//    public void addDisposable(Disposable disposable) {
-//        if (mCompositeDisposable == null || mCompositeDisposable.isDisposed()) {
-//            mCompositeDisposable = new CompositeDisposable();
-//        }
-//        mCompositeDisposable.add(disposable);
-//    }
-
     @Override
     public void onClick(View v) {
 
@@ -264,6 +255,21 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     @Override
     public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+    }
+
+    @Override
+    public void onLoadMore() {
 
     }
 
@@ -282,11 +288,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     }
 
-    @Override
-    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-
-    }
-
     public <T> AutoDisposeConverter<T> bindAutoDispose() {
         return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this, Lifecycle.Event.ON_DESTROY));
     }
@@ -294,9 +295,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        if (mCompositeDisposable != null) {
-//            mCompositeDisposable.dispose();
-//        }
         if (bind != null) {
             bind.unbind();
         }

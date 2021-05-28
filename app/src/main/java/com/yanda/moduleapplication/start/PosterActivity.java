@@ -13,7 +13,6 @@ import com.yanda.module_base.entity.PosterEntity;
 import com.yanda.module_base.http.Address;
 import com.yanda.module_base.router.RouterActivityPath;
 import com.yanda.module_base.utils.RouterUtil;
-import com.yanda.moduleapplication.MainActivity;
 import com.yanda.moduleapplication.R;
 import com.yanda.moduleapplication.http.GlideApp;
 
